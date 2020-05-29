@@ -21,13 +21,10 @@ for exp_date in options:
 	if (exp_date >= date):
 		eligible_options.append(exp_date)
 
-# When printing a DataFrame, this makes sure it incudes all the details, and not just the abridged details
-pd.set_option("display.max_rows", None, "display.max_columns", None)
-
 # Takes all the call options of each eligible expiration date and prints them
 for exp_date in eligible_options:
-	table = fb.option_chain(eligible_options[0]).calls
-	table = str(table)
+	table_as_dataframe = fb.option_chain(eligible_options[0]).calls
+	table_as_string = table_as_dataframe.to_string()
 	print(exp_date + "\n\n")
-	print(table + "\n\n---------------------------------------------------------\n")
+	print(table_as_string + "\n\n---------------------------------------------------------\n")
 
