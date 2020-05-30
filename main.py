@@ -1,13 +1,11 @@
 import yfinance as yf
-from datetime import date
-from dateutil.relativedelta import relativedelta
-import pandas as pd
+from   datetime import date, timedelta
 
 # Get the Facebook ticker
 fb = yf.Ticker("FB")
 
-# Gets the date 14 months from now and typecasts it to a string
-date = date.today() + relativedelta(months=+14)
+# Gets the date 12 months from now and typecasts it to a string
+date = date.today() + timedelta(weeks = 12 * 4)
 date = str(date)
 
 # Typecasts the expiration dates of all Facebook options to a list to make it easier to handle 
