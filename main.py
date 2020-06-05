@@ -1,5 +1,6 @@
 import yfinance as yf
-from   datetime import date, timedelta
+from datetime import date, timedelta
+import pandas as pd
 
 # Get the Facebook ticker
 fb = yf.Ticker("FB")
@@ -19,9 +20,11 @@ for exp_date in options:
 	if (exp_date >= date):
 		eligible_options.append(exp_date)
 
-# Takes all the call options of each eligible expiration date and prints them
+# Takes all the call options of each eligible expiration date, filters 
+# the strike price into the ~50-70% of the share price range, and prints them
 for exp_date in eligible_options:
 	table_as_dataframe = fb.option_chain(exp_date).calls
+	table_as_dataframe = table_as_dataframe.loc[(table_as_dataframe['strike'] >= 115) & (table_as_dataframe['strike'] <= 163)]
 	table_as_string = table_as_dataframe.to_string(columns=['contractSymbol', 'lastTradeDate', 'strike', 'lastPrice', 'bid', 'ask', 'change', 'volume', 'openInterest'])
 	print("---------------------------------------------------------\n\n" + exp_date + "\n\n")
 	print(table_as_string + "\n\n")
