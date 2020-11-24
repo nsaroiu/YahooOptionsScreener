@@ -17,7 +17,7 @@ def main():
 	screener.set_defaults(calls = True)
 	screener.set_defaults(puts = False)
 	screener.add_argument('--exp', metavar='days', type=int, default = 365, help="Expires at least 'days' from today")
-	screener.add_argument('--strike', nargs=2, metavar=('min', 'max'), type=int, default = [0.5, 0.7], help="Strike btw. min and max (as fractions of stock quote)")
+	screener.add_argument('--strike', nargs=2, metavar=('min', 'max'), type=float, default = [0.5, 0.7], help="Strike btw. min and max (as fractions of stock quote)")
 	args = parser.parse_args()
 
 	ticker = yf.Ticker(args.symbol)
