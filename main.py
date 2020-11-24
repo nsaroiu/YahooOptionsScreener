@@ -7,10 +7,11 @@ import yfinance as yf
 # Argument parsing
 description = 'Options Screener using Yahoo Data API'
 parser = argparse.ArgumentParser(description=description)
+parser.add_argument('ticker', help='Stock ticker (not option ticker)')
 args = parser.parse_args()
 
 # Get the Facebook ticker and share price
-fb = yf.Ticker("FB")
+fb = yf.Ticker(args.ticker)
 fbInfo = fb.info
 share_price = fbInfo["ask"]
 # If the market is closed, then the share price would be equal to the previous closing price
