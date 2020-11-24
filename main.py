@@ -1,7 +1,13 @@
-import yfinance as yf
+import argparse
 from datetime import date, timedelta
-import pandas as pd
 import lxml
+import pandas as pd
+import yfinance as yf
+
+# Argument parsing
+description = 'Options Screener using Yahoo Data API'
+parser = argparse.ArgumentParser(description=description)
+args = parser.parse_args()
 
 # Get the Facebook ticker and share price
 fb = yf.Ticker("FB")
