@@ -1,7 +1,7 @@
-import yfinance as yf
 from datetime import date, timedelta
-import pandas as pd
 import lxml
+import pandas as pd
+import yfinance as yf
 
 # Get the Facebook ticker and share price
 fb = yf.Ticker("FB")
