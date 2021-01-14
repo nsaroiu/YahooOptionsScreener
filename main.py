@@ -21,7 +21,11 @@ def main():
 	args = parser.parse_args()
 
 	ticker = yf.Ticker(args.symbol)
-	options = ticker.options
+	try:
+		options = ticker.options
+	except IndexError:
+		print("No options found.")
+		quit()
 
 	# Filter options by their expiration dates
 	eligible_options = FilterOptionsByExpDate(options, args.exp)
